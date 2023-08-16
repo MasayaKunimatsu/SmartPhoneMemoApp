@@ -8,10 +8,16 @@ export default function UserInfoInput(props) {
   const { title } = props;
   return (
     <View style={styles.inputContainer}>
-      <Text style={styles.inputTitle}>{title}</Text>
-      <TextInput style={styles.input} placeholder="Email Address" />
-      <TextInput style={styles.input} placeholder="Password" />
-      <Text style={styles.roundButton}>Submit</Text>
+      <View>
+        <Text style={styles.inputTitle}>{title}</Text>
+      </View>
+      <View>
+        <TextInput style={styles.input} placeholder="Email Address" />
+        <TextInput style={styles.input} placeholder="Password" />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Text style={styles.buttonLabel}>Submit</Text>
+      </View>
     </View>
   );
 }
@@ -35,15 +41,18 @@ const styles = StyleSheet.create({
     height: 48,
     paddingLeft: 8,
     marginBottom: 16,
+    borderWidth: 0.5,
+    borderColor: 'gray',
   },
-  roundButton: {
+  buttonContainer: {
     backgroundColor: '#467fd3',
-    color: 'white',
-    height: 48,
-    width: 99,
+    alignSelf: 'flex-start',
     borderRadius: 4,
-    textAlign: 'center',
-    textAlignVertical: 'center',
+  },
+  buttonLabel: {
+    color: 'white',
+    paddingVertical: 8,
+    paddingHorizontal: 24,
     fontSize: 16,
     lineHeight: 32,
   },
