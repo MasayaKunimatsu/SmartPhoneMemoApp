@@ -11,7 +11,7 @@ export default function MemoDetailScreen() {
       <AppBar backButtonFlag />
       <MemoTitle />
       <MemoContent />
-      <CircleButton buttonLabel="+" style={{ top: 160, bottom: 'auto' }} />
+      <CircleButton iconName="edit-2" style={{ top: 160, bottom: 'auto' }} />
     </View>
   );
 }

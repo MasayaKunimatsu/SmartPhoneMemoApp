@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Feather } from '@expo/vector-icons';
 
 export default function MemoList() {
   return (
@@ -10,7 +12,7 @@ export default function MemoList() {
           <Text style={styles.memoListItemDate}>2020/12/24 10:00</Text>
         </View>
         <View style={styles.memoListItemDelete}>
-          <Text>X</Text>
+          <Feather name="x" size={16} color="#b0b0b0" />
         </View>
       </View>
 
@@ -20,7 +22,7 @@ export default function MemoList() {
           <Text style={styles.memoListItemDate}>2020/12/24 10:00</Text>
         </View>
         <View style={styles.memoListItemDelete}>
-          <Text>X</Text>
+          <Feather name="x" size={16} color="#b0b0b0" />
         </View>
       </View>
 
@@ -30,7 +32,7 @@ export default function MemoList() {
           <Text style={styles.memoListItemDate}>2020/12/24 10:00</Text>
         </View>
         <View style={styles.memoListItemDelete}>
-          <Text>X</Text>
+          <Feather name="x" size={16} color="#b0b0b0" />
         </View>
       </View>
     </View>
