@@ -1,13 +1,17 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { string } from 'prop-types';
+import {
+  View, StyleSheet, Text, TouchableOpacity,
+} from 'react-native';
+import { string, func } from 'prop-types';
 
 export default function LoginSignupLink(props) {
-  const { text, linkText } = props;
+  const { text, linkText, onPress } = props;
   return (
     <View style={styles.textContainer}>
       <Text style={[styles.textCommon]}>{text}</Text>
-      <Text style={[styles.textCommon, styles.link]}>{linkText}</Text>
+      <TouchableOpacity onPress={onPress}>
+        <Text style={[styles.textCommon, styles.link]}>{linkText}</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -15,6 +19,11 @@ export default function LoginSignupLink(props) {
 LoginSignupLink.propTypes = {
   text: string.isRequired,
   linkText: string.isRequired,
+  onPress: func,
+};
+
+LoginSignupLink.defaultProps = {
+  onPress: null,
 };
 
 const styles = StyleSheet.create({

@@ -3,6 +3,7 @@ import {
   View, StyleSheet, Text, TextInput,
 } from 'react-native';
 import { string } from 'prop-types';
+import Button from './Button';
 
 export default function UserInfoInput(props) {
   const { title } = props;
@@ -15,9 +16,7 @@ export default function UserInfoInput(props) {
         <TextInput style={styles.input} placeholder="Email Address" />
         <TextInput style={styles.input} placeholder="Password" />
       </View>
-      <View style={styles.buttonContainer}>
-        <Text style={styles.buttonLabel}>Submit</Text>
-      </View>
+      <Button buttonText="Submit" />
     </View>
   );
 }
@@ -43,17 +42,5 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     borderWidth: 0.5,
     borderColor: 'gray',
-  },
-  buttonContainer: {
-    backgroundColor: '#467fd3',
-    alignSelf: 'flex-start',
-    borderRadius: 4,
-  },
-  buttonLabel: {
-    color: 'white',
-    paddingVertical: 8,
-    paddingHorizontal: 24,
-    fontSize: 16,
-    lineHeight: 32,
   },
 });

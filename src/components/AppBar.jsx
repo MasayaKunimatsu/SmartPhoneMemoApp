@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import {
+  View, Text, StyleSheet, TouchableOpacity,
+} from 'react-native';
 import { bool } from 'prop-types';
 
 export default function AppBar(props) {
@@ -7,9 +9,13 @@ export default function AppBar(props) {
   return (
     <View style={styles.appbar}>
       <View style={styles.appbarInner}>
-        <Text style={styles.appbarLeft}>{`${backButtonFlag ? '< Back' : ''}`}</Text>
+        <TouchableOpacity style={styles.appbarLeft}>
+          <Text style={styles.backText}>{`${backButtonFlag ? '< Back' : ''}`}</Text>
+        </TouchableOpacity>
         <Text style={styles.appbarTitle}>Memo App</Text>
-        <Text style={styles.appbarRight}>{`${logoutButtonFlag ? 'ログアウト' : ''}`}</Text>
+        <TouchableOpacity style={styles.appbarRight}>
+          <Text style={styles.logoutText}>{`${logoutButtonFlag ? 'ログアウト' : ''}`}</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -48,6 +54,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 13,
     bottom: 8,
+  },
+  backText: {
     color: 'white',
     fontSize: 20,
   },
@@ -55,6 +63,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 13,
     bottom: 8,
+  },
+  logoutText: {
     color: 'rgba(255, 255, 255, 0.8)',
   },
 });
