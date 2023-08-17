@@ -10,6 +10,7 @@
     },
     "rules": {
         "no-use-before-define": 0,
-        "linebreak-style": ["error", "windows"]
+        "linebreak-style": ["error", "windows"],
+        "react/prop-types": ["error", { "ignore": ["navigation"] }]
     }
 }

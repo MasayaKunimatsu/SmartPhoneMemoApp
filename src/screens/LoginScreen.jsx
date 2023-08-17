@@ -1,16 +1,24 @@
 import React from 'react';
 import { StyleSheet, KeyboardAvoidingView } from 'react-native';
 
-import AppBar from '../components/AppBar';
 import UserInfoInput from '../components/UserInfoInput';
 import LoginSignupLink from '../components/LoginSignupLink';
 
-export default function LoginScreen() {
+export default function LoginScreen(props) {
+  const { navigation } = props;
   return (
     <KeyboardAvoidingView style={styles.container} behavior="height">
-      <AppBar />
       <UserInfoInput title="Log In" />
-      <LoginSignupLink text="Not registered?" linkText="Sign up here!" />
+      <LoginSignupLink
+        text="Not registered?"
+        linkText="Sign up here!"
+        onPress={() => {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'Signup' }],
+          });
+        }}
+      />
     </KeyboardAvoidingView>
   );
 }

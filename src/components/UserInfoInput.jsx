@@ -3,10 +3,14 @@ import {
   View, StyleSheet, Text, TextInput,
 } from 'react-native';
 import { string } from 'prop-types';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useNavigation } from '@react-navigation/native';
+
 import Button from './Button';
 
 export default function UserInfoInput(props) {
   const { title } = props;
+  const navigation = useNavigation();
   return (
     <View style={styles.inputContainer}>
       <View>
@@ -16,7 +20,15 @@ export default function UserInfoInput(props) {
         <TextInput style={styles.input} placeholder="Email Address" />
         <TextInput style={styles.input} placeholder="Password" />
       </View>
-      <Button buttonText="Submit" />
+      <Button
+        buttonText="Submit"
+        onPress={() => {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'MemoList' }],
+          });
+        }}
+      />
     </View>
   );
 }
