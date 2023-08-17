@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View, StyleSheet, Text, TextInput,
 } from 'react-native';
@@ -11,14 +11,34 @@ import Button from './Button';
 export default function UserInfoInput(props) {
   const { title } = props;
   const navigation = useNavigation();
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <View style={styles.inputContainer}>
       <View>
         <Text style={styles.inputTitle}>{title}</Text>
       </View>
       <View>
-        <TextInput style={styles.input} placeholder="Email Address" />
-        <TextInput style={styles.input} placeholder="Password" />
+        <TextInput
+          style={styles.input}
+          placeholder="Email Address"
+          value={email}
+          onChangeText={(text) => { setEmail(text); }}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          textContentType="emailAddress"
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Password"
+          value={password}
+          onChangeText={(text) => { setPassword(text); }}
+          autoCapitalize="none"
+          secureTextEntry
+          textContentType="password"
+        />
       </View>
       <Button
         buttonText="Submit"
