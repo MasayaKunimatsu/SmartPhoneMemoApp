@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, KeyboardAvoidingView } from 'react-native';
+import firebase from 'firebase';
 
 import UserInfoInput from '../components/UserInfoInput';
 import LoginSignupLink from '../components/LoginSignupLink';
 
 export default function LoginScreen(props) {
   const { navigation } = props;
+
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'MemoList' }],
+        });
+      }
+    });
+    return unsubscribe;
+  }, []);
+
   return (
     <KeyboardAvoidingView style={styles.container} behavior="height">
       <UserInfoInput mode="login" />
