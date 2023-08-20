@@ -8,7 +8,7 @@ export default function SignupScreen(props) {
   const { navigation } = props;
   return (
     <KeyboardAvoidingView style={styles.container} behavior="height">
-      <UserInfoInput title="Sign Up" />
+      <UserInfoInput mode="signup" />
       <LoginSignupLink
         text="Already registered?"
         linkText="Log in here!"

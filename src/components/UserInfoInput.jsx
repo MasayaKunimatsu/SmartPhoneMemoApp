@@ -1,24 +1,50 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, Text, TextInput,
+  View, StyleSheet, Text, TextInput, Alert
 } from 'react-native';
 import { string } from 'prop-types';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useNavigation } from '@react-navigation/native';
+import firebase from 'firebase';
 
 import Button from './Button';
 
 export default function UserInfoInput(props) {
-  const { title } = props;
+  const { mode } = props;
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  function handlePress() {
+    if (mode === 'signup') {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((userCredential) => { goMemoList(userCredential) })
+        .catch((error) => {
+          Alert.alert(error.code);
+        });
+    } else {
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => { goMemoList(userCredential) })
+        .catch((error) => {
+          Alert.alert(error.code);
+        });
+    }
+  }
+
+  function goMemoList(userCredential) {
+    const { user } = userCredential;
+    console.log(user.uid);
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'MemoList' }],
+    });
+  }
+
   return (
     <View style={styles.inputContainer}>
       <View>
-        <Text style={styles.inputTitle}>{title}</Text>
+        <Text style={styles.inputTitle}>{`${mode === 'login' ? 'Log In' : 'Sign Up'}`}</Text>
       </View>
       <View>
         <TextInput
@@ -42,19 +68,14 @@ export default function UserInfoInput(props) {
       </View>
       <Button
         buttonText="Submit"
-        onPress={() => {
-          navigation.reset({
-            index: 0,
-            routes: [{ name: 'MemoList' }],
-          });
-        }}
+        onPress={() => handlePress(mode)}
       />
     </View>
   );
 }
 
 UserInfoInput.propTypes = {
-  title: string.isRequired,
+  mode: string.isRequired,
 };
 
 const styles = StyleSheet.create({
