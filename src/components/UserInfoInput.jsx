@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import {
-  View, StyleSheet, Text, TextInput, Alert
+  View, StyleSheet, Text, TextInput, Alert,
 } from 'react-native';
 import { string } from 'prop-types';
 import { useNavigation } from '@react-navigation/native';
@@ -19,13 +19,13 @@ export default function UserInfoInput(props) {
   function handlePress() {
     if (mode === 'signup') {
       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => { goMemoList(userCredential) })
+        .then((userCredential) => { goMemoList(userCredential); })
         .catch((error) => {
           Alert.alert(error.code);
         });
     } else {
       firebase.auth().signInWithEmailAndPassword(email, password)
-        .then((userCredential) => { goMemoList(userCredential) })
+        .then((userCredential) => { goMemoList(userCredential); })
         .catch((error) => {
           Alert.alert(error.code);
         });
